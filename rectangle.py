@@ -10,6 +10,8 @@ class rectangle(object):
         self.x4 = 0
         self.y3 = 0
         self.y4 = 0
+        
+        
 
         
         
@@ -26,7 +28,7 @@ class rectangle(object):
         print("B:",self.x2,"," ,self.y1)
         print("C:",self.x2, ",",self.y2)
         print("D:",self.x1,",",self.y2)
-        
+    
     def peremeshenie(self):
         dx = int(input("На сколько единиц вы хотите переместить прямоугольник по оси X ?"))
         dy = int(input("На сколько единиц вы хотите переместить прямоугольник по оси Y ?"))
@@ -36,6 +38,10 @@ class rectangle(object):
         print("B:", self.x2+dx, ",", self.y1+dy)
         print("C:", self.x2+dx, ",", self.y2+dy)
         print("D:", self.x1+dx, ",", self.y2+dy)
+        self.x1 = self.x1+dx
+        self.x2 = self.x2+dx
+        self.y1 = self.y1+dy
+        self.y2 = self.y2+dy
         
     def size(self):
         r = int(input("Во сколько раз изменяем размер прямоугольника ?"))
@@ -45,6 +51,8 @@ class rectangle(object):
         print("B:",self.x2*r, ",",self.y1)
         print("C:",self.x2*r, ",",self.y2)
         print("D:",self.x1, ",",self.y2)
+        self.x2 = self.x2*r
+    
         
     def input2(self):
         print("2 прямоугольник:")
@@ -90,52 +98,59 @@ class rectangle(object):
         print("D:", x_min, ",", y_min)
 
     def cross(self):
-        x_min = self.x1
-        x_max = self.x1
-        y_min = self.y1
-        y_max = self.y1
-        x1_sred = 0
-        x2_sred = 0
-        y1_sred = 0
-        y2_sred = 0
+        # x_min = self.x1
+        # x_max = self.x1
+        # y_min = self.y1
+        # y_max = self.y1
+        # x1_sred = 0
+        # x2_sred = 0
+        # y1_sred = 0
+        # y2_sred = 0
         self.input2()
         self.result()
         self.result2()
         A = [self.x1,self.x2,self.x3,self.x4]
         B = [self.y1,self.y2,self.y3,self.y4]
         
-        for i in range(4):
-            if (x_max < int(A[i])):
-                x_max = A[i]
-            if (y_max < int(B[i])):
-                y_max = B[i]
-            if (x_min > int(A[i])):
-                x_min = A[i]
-            if (y_min > int(B[i])):
-                 y_min = B[i]
-                         
-            for i in range(4):
-                if ((A[i] != x_max) & (A[i] != x_min)):
-                    x1_sred = A[i]
-                    break
-            for i in range(4):
-                if ((A[i] != x_max) & (A[i] != x_min) & (A[i] != x1_sred)):
-                    x2_sred = A[i]
-                    break
-            for i in range(4):
-                if((B[i] != y_max) & (B[i] != y_min)):
-                    y1_sred = B[i]
-                    break
-            for i in range(4):
-                if((B[i] != y_max) & (B[i] != y_min) & (B[i] != y1_sred)):
-                    y2_sred = B[i]
-                    break
+        # for i in range(4):
+        #     if (x_max < int(A[i])):
+        #         x_max = A[i]
+        #     if (y_max < int(B[i])):
+        #         y_max = B[i]
+        #     if (x_min > int(A[i])):
+        #         x_min = A[i]
+        #     if (y_min > int(B[i])):
+        #          y_min = B[i]
+        #
+        #     for i in range(4):
+        #         if ((A[i] != x_max) & (A[i] != x_min)):
+        #             x1_sred = A[i]
+        #             break
+        #     for i in range(4):
+        #         if ((A[i] != x_max) & (A[i] != x_min) & (A[i] != x1_sred)):
+        #             x2_sred = A[i]
+        #             break
+        #     for i in range(4):
+        #         if((B[i] != y_max) & (B[i] != y_min)):
+        #             y1_sred = B[i]
+        #             break
+        #     for i in range(4):
+        #         if((B[i] != y_max) & (B[i] != y_min) & (B[i] != y1_sred)):
+        #             y2_sred = B[i]
+        #             break
+        A.sort()
+        B.sort()
+        A.pop(3)
+        A.pop(0)
+        B.pop(3)
+        B.pop(0)
+
 
         print(" Прямоугольник на пересечении двух предыдущих имеет следующие координаты: ")
-        print("A:",x1_sred,",",y2_sred)
-        print("B:",x2_sred,",",y2_sred)
-        print("C:",x2_sred, ",",y1_sred)
-        print("D:",x1_sred,",",y1_sred)
+        print("A:",A[0],",",B[1])
+        print("B:",A[1],",",B[1])
+        print("C:",A[1], ",",B[0])
+        print("D:",A[0],",",B[0])
     
     
     def showMenu(self):
